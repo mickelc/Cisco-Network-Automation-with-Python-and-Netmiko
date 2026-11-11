@@ -127,7 +127,7 @@ Similar SSH configurations were applied to both routers.
 
 ### SSH Verification
 
-![SSH Configuration](screenshots/ssh-configuration.png)
+![SSH Configuration](screenshots/ssh-config.png)
 
 ---
 
