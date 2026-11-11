@@ -240,17 +240,9 @@ show ip protocols
 show ip interface brief
 ```
 
-### OSPF Neighbor Verification
-
-![OSPF Neighbors](screenshots/ospf-neighbors.png)
-
-### OSPF Automation Output
-
-![OSPF Automation](screenshots/ospf-automation.png)
-
 ### Video Demonstration
 
-**YouTube:** [Watch OSPF Automation Demo](YOUR_OSPF_VIDEO_URL)
+**YouTube:** [Watch OSPF Automation Demo](https://youtu.be/mTxsJOXlhX4?si=HGEqhXtEALnTsgzZ)
 
 ---
 
@@ -281,46 +273,10 @@ The automation was designed to create VLANs on their respective switches and ass
 
 ### Python Automation Script
 
-**Script:** [configure_vlan.py](scripts/configure_vlan.py)
+**Script:** [configure_vlan.py](scripts/configure_vlans.py)
 
 The script uses a dictionary to associate each switch's management IP address with its required configuration commands.
 
-```python
-from netmiko import ConnectHandler
-from inventory import get_devices
-
-vlan_configs = {
-    "192.168.20.2": [
-        "vlan 40",
-        "name ENGINEERING",
-        "interface GigabitEthernet0/2",
-        "switchport mode access",
-        "switchport access vlan 40",
-    ],
-    "192.168.30.2": [
-        "vlan 50",
-        "name OPERATIONS",
-        "interface GigabitEthernet0/2",
-        "switchport mode access",
-        "switchport access vlan 50",
-    ],
-}
-
-for device in get_devices(["SW-1", "SW-2"]):
-    print(f"\nConfiguring VLANs on {device['host']}")
-
-    with ConnectHandler(**device) as conn:
-        conn.enable()
-
-        output = conn.send_config_set(
-            vlan_configs[device["host"]]
-        )
-
-        print(output)
-        conn.save_config()
-
-print("\nVLAN configuration completed.")
-```
 
 ### Router Subinterface Configuration
 
@@ -370,48 +326,9 @@ show interfaces trunk
 show ip interface brief
 ```
 
-### VLAN Automation Output
-
-![VLAN Automation](screenshots/vlan-automation.png)
-
-### VLAN Table Verification
-
-![VLAN Table](screenshots/vlan-table.png)
-
-### Video Demonstration
-
-**YouTube:** [Watch VLAN Automation Demo](YOUR_VLAN_VIDEO_URL)
+**YouTube:** [Watch VLAN Automation Demo](https://youtu.be/y9P6JKFHNr4?si=CmJXrXeaRxCgd9Ai)
 
 ---
-
-## 5. Project Structure
-
-The automation scripts are organized into separate files to simplify configuration management and verification.
-
-```text
-Cisco-Network-Automation-with-Python-and-Netmiko/
-│
-├── README.md
-├── requirements.txt
-├── .gitignore
-│
-├── scripts/
-│   ├── inventory.py
-│   ├── configure_ospf.py
-│   ├── configure_vlan.py
-│   ├── show_interfaces.py
-│   └── show_vlans.py
-│
-└── screenshots/
-    ├── network-topology.png
-    ├── management-switch.png
-    ├── ssh-configuration.png
-    ├── initial-vlans.png
-    ├── ospf-neighbors.png
-    ├── ospf-automation.png
-    ├── vlan-automation.png
-    └── vlan-table.png
-```
 
 ### File Descriptions
 
@@ -420,13 +337,11 @@ Cisco-Network-Automation-with-Python-and-Netmiko/
 | inventory.py | Stores device connection information and retrieves SSH credentials |
 | configure_ospf.py | Automates OSPF routing configuration |
 | configure_vlan.py | Automates VLAN creation and interface assignments |
-| show_interfaces.py | Retrieves interface status information |
 | show_vlans.py | Retrieves VLAN tables |
-| requirements.txt | Lists required Python dependencies |
 
 ---
 
-## 6. Running the Automation Scripts
+## 5. Running the Automation Scripts
 
 ### Prerequisites
 
@@ -454,7 +369,7 @@ pip install netmiko
 ### Step 3 — Execute OSPF Automation
 
 ```bash
-cd scripts
+cd network-automation-lab
 python3 configure_ospf.py
 ```
 
@@ -467,7 +382,6 @@ python3 configure_vlan.py
 ### Step 5 — Verify Configurations
 
 ```bash
-python3 show_interfaces.py
 python3 show_vlans.py
 ```
 
@@ -475,7 +389,7 @@ python3 show_vlans.py
 
 ---
 
-## 7. Key Skills Demonstrated
+## 6. Key Skills Demonstrated
 
 This project provided hands-on experience with the following technologies and concepts:
 
@@ -489,7 +403,7 @@ This project provided hands-on experience with the following technologies and co
 
 ---
 
-## 8. Project Takeaways
+## 7. Project Takeaways
 
 This project allowed me to apply Python programming to real-world network engineering tasks in a simulated enterprise environment.
 
