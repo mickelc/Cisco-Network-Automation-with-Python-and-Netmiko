@@ -46,7 +46,7 @@ The management network provides SSH connectivity between the automation server a
 
 ### Topology Diagram
 
-![Network Topology](screenshots/network-topology.png)
+![Network Topology](screenshots/Topology.png)
 
 ### IP Addressing Scheme
 
